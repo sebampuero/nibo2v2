@@ -25,12 +25,10 @@
 
 #define T_SIDES_90 120
 
-char output[20] = "";
-int current_distance = 0;
-int distance = 0;
-int r = 0;
-int l = 0;
-void init(){
+int dis = 0;
+int r_r = 0;
+int l_l = 0;
+void init_bot(){
 	sei();
 	bot_init();
 	spi_init();
@@ -39,23 +37,7 @@ void init(){
 	copro_ir_startMeasure();
 }
 
-void distances(){
-	gfx_fill(0);
-	gfx_move(0, 0);
-	gfx_print_text("Distanzen");
-	copro_update();
-	current_distance = copro_distance[0]/256;
-	sprintf(output, "%3i ", current_distance);
-	gfx_move(0, 10);
-	gfx_print_text(output);
-	for(int i = 1; i < 5; i++){
-	   	current_distance = copro_distance[i]/256;
-	    sprintf(output, "%3i", current_distance);
-		gfx_move(23*i, 10);
-		gfx_print_text(output);
-	}
-}
-void backwards_mode(){
+void b_m(){
 	while(copro_distance[LEFT_SIDE]/256 > T_SIDES_90 && copro_distance[RIGHT_SIDE]/256 > T_SIDES_90){
 		copro_update();
 		copro_setSpeed(-10,-10);
@@ -75,11 +57,11 @@ void backwards_mode(){
 }
 
 
-void check_sensors(){
+int autoo(){
 	copro_update();
 	for(int i=0;i<5;i++){
-		distance = copro_distance[i]/256;
-		if(distance < 150){
+		dis = copro_distance[i]/256;
+		if(dis < 150){
 			copro_setSpeed(14,14);
 		}
 	}
@@ -101,22 +83,23 @@ void check_sensors(){
 		delay(1700);
 	}
 	else if(copro_distance[FRONT_LEFT]/256 > T_SIDES){
-		r = (copro_distance[FRONT_LEFT]/256) / 8;
-		l = (copro_distance[FRONT_LEFT]/256) / 19;
-		copro_setSpeed(l,r);
+		r_r = (copro_distance[FRONT_LEFT]/256) / 8;
+		l_l = (copro_distance[FRONT_LEFT]/256) / 19;
+		copro_setSpeed(l_l,r_r);
 	}
 	else if(copro_distance[FRONT_RIGHT]/256 > T_SIDES){
-		r = (copro_distance[FRONT_RIGHT]/256) / 19;
-		l = (copro_distance[FRONT_RIGHT]/256) / 8;
-		copro_setSpeed(l,r);
+		r_r = (copro_distance[FRONT_RIGHT]/256) / 19;
+		l_l = (copro_distance[FRONT_RIGHT]/256) / 8;
+		copro_setSpeed(l_l,r_r);
 	}
 }
 
-int main(){
-	init();
+/*
+ * int main(){
+	init_bot();
 	while(1){
-		distances();
-		check_sensors();
+		auto_mode_drive();
 		delay(100);
 	}
 }
+ */
