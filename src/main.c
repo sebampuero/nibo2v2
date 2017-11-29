@@ -8,7 +8,7 @@
 uint8_t mode = nibo_auto;
 uint8_t last_cmd = 15;
 uint8_t drive_result;
-uint8_t auto_flag = 0;
+uint8_t auto_flag = 1;
 
 void init(){
 	sei();

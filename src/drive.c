@@ -13,7 +13,7 @@ uint8_t r = 0;
 uint8_t l = 0;
 
 void backwards_mode(){
-	while(copro_distance[LEFT_SIDE]/256 > T_SIDES_90 && copro_distance[RIGHT_SIDE]/256 > T_SIDES_90){
+	while(side_sensors_too_close()){
 		all_blocked();
 		copro_update();
 		copro_setSpeed(-10,-10);
@@ -48,7 +48,7 @@ void auto_mode_drive(){
 	if(copro_distance[FRONT]/256 > T_FRONT){
 		copro_stop();
 		delay(200);
-		if(copro_distance[LEFT_SIDE]/256 > T_SIDES_90 && copro_distance[RIGHT_SIDE]/256 > T_SIDES_90){
+		if(side_sensors_too_close()){
 			backwards_mode();
 		}
 		else if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
@@ -68,13 +68,21 @@ void auto_mode_drive(){
 		r = (copro_distance[FRONT_LEFT]/256) / 8;
 		l = (copro_distance[FRONT_LEFT]/256) / 19;
 		copro_setSpeed(l,r);
-		going_half_right();
+		going_half_left();
 	}
 	else if(copro_distance[FRONT_RIGHT]/256 > T_SIDES){
 		r = (copro_distance[FRONT_RIGHT]/256) / 19;
 		l = (copro_distance[FRONT_RIGHT]/256) / 8;
 		copro_setSpeed(l,r);
-		going_half_left();
+		going_half_right();
+	}
+}
+
+uint8_t side_sensors_too_close(){
+	if(copro_distance[LEFT_SIDE]/256 > T_SIDES_90 && copro_distance[RIGHT_SIDE]/256 > T_SIDES_90){
+		return 1;
+	}else{
+		return 0;
 	}
 }
 
@@ -91,7 +99,7 @@ void drive_turn_left(){
  @brief turns the nibo 45 degrees to the left
  */
 void drive_turn_halfLeft(){
-	copro_setTargetRel(-8, 10, 10);
+	copro_setTargetRel(-13, 13, 10);
 }
 
 /**
@@ -105,7 +113,7 @@ void drive_turn_right(){
  @brief turns the nibo 45 degrees to the right
  */
 void drive_turn_halfRight(){
-	copro_setTargetRel(10, -8, 10);
+	copro_setTargetRel(13, -13, 10);
 }
 
 /**
@@ -125,6 +133,3 @@ uint8_t drive_forward(uint8_t speed){
 	}
 }
 
-void stop_completely(){
-	copro_stop();
-}

@@ -67,6 +67,5 @@ void auto_mode_drive();
 
 uint8_t drive_forward(uint8_t speed);
 
-void stop_completely();
 
 #endif /* DRIVE_H_ */
