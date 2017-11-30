@@ -54,26 +54,26 @@ void auto_mode_drive(){
 		else if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
 		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
 			//turn left
-			copro_setTargetRel(-20,20,12);
+			copro_setTargetRel(-16,16,12);
 			going_left();
 		}else if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
 		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
 			//turn right
-			copro_setTargetRel(20,-20,12);
+			copro_setTargetRel(16,-16,12);
 			going_right();
 		}
-		delay(1700);
+		delay(1500);
 	}
 	else if(copro_distance[FRONT_LEFT]/256 > T_SIDES){
-		r = (copro_distance[FRONT_LEFT]/256) / 8;
-		l = (copro_distance[FRONT_LEFT]/256) / 19;
-		copro_setSpeed(l,r);
+		r = (copro_distance[FRONT_LEFT]/256) / 10;
+		l = (copro_distance[FRONT_LEFT]/256) / 24;
+		copro_setSpeed(l,r-1);
 		going_half_left();
 	}
 	else if(copro_distance[FRONT_RIGHT]/256 > T_SIDES){
-		r = (copro_distance[FRONT_RIGHT]/256) / 19;
-		l = (copro_distance[FRONT_RIGHT]/256) / 8;
-		copro_setSpeed(l,r);
+		r = (copro_distance[FRONT_RIGHT]/256) / 24;
+		l = (copro_distance[FRONT_RIGHT]/256) / 10;
+		copro_setSpeed(l-1,r);
 		going_half_right();
 	}
 }
@@ -133,3 +133,6 @@ uint8_t drive_forward(uint8_t speed){
 	}
 }
 
+void stop_completely(){
+	copro_stop();
+}
