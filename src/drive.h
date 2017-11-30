@@ -16,15 +16,15 @@
 #include <stdint.h>
 #include "nibo_leds.h"
 
-#define FRONT_LEFT       1
+#define FRONT_LEFT       3
 
-#define FRONT_RIGHT      3
+#define FRONT_RIGHT      1
 
 #define FRONT      2
 
-#define LEFT_SIDE  0
+#define LEFT_SIDE  4
 
-#define RIGHT_SIDE 4
+#define RIGHT_SIDE 0
 
 #define T_FRONT    150
 

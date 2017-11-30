@@ -23,14 +23,14 @@ void backwards_mode(){
 	copro_stop();
 	if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
 		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
-		//turn left
-		copro_setTargetRel(-27,27,10);
-		going_left();
+		//turn right
+		drive_turn_right();
+		going_right();
 	}else if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
 		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
-		//turn right
-		copro_setTargetRel(27,-27,10);
-		going_right();
+		//turn left
+		drive_turn_left();
+		going_left();
 	}
 	delay(2000);
 }
@@ -53,28 +53,28 @@ void auto_mode_drive(){
 		}
 		else if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
 		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
-			//turn left
-			copro_setTargetRel(-16,16,12);
-			going_left();
+			//turn right
+			drive_turn_halfRight();
+			going_right();
 		}else if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
 		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
-			//turn right
-			copro_setTargetRel(16,-16,12);
-			going_right();
+			//turn left
+			drive_turn_halfLeft();
+			going_left();
 		}
 		delay(1500);
 	}
 	else if(copro_distance[FRONT_LEFT]/256 > T_SIDES){
-		r = (copro_distance[FRONT_LEFT]/256) / 10;
-		l = (copro_distance[FRONT_LEFT]/256) / 24;
+		r = (copro_distance[FRONT_LEFT]/256) / 24;
+		l = (copro_distance[FRONT_LEFT]/256) / 10;
 		copro_setSpeed(l,r-1);
-		going_half_left();
+		going_half_right();
 	}
 	else if(copro_distance[FRONT_RIGHT]/256 > T_SIDES){
-		r = (copro_distance[FRONT_RIGHT]/256) / 24;
-		l = (copro_distance[FRONT_RIGHT]/256) / 10;
+		r = (copro_distance[FRONT_RIGHT]/256) / 10;
+		l = (copro_distance[FRONT_RIGHT]/256) / 24;
 		copro_setSpeed(l-1,r);
-		going_half_right();
+		going_half_left();
 	}
 }
 
