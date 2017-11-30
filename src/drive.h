@@ -28,7 +28,7 @@
 
 #define T_FRONT    150
 
-#define T_SIDES    160
+#define T_SIDES    140
 
 #define T_SIDES_90 80
 

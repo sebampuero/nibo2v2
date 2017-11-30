@@ -694,7 +694,7 @@ void auto_mode_drive(){
      512:	20 91 9c 04 	lds	r18, 0x049C
      516:	30 91 9d 04 	lds	r19, 0x049D
      51a:	21 15       	cp	r18, r1
-     51c:	81 ea       	ldi	r24, 0xA1	; 161
+     51c:	8d e8       	ldi	r24, 0x8D	; 141
      51e:	38 07       	cpc	r19, r24
      520:	c8 f0       	brcs	.+50     	; 0x554 <auto_mode_drive+0x100>
 		r = (copro_distance[FRONT_LEFT]/256) / 10;
@@ -736,7 +736,7 @@ void auto_mode_drive(){
      554:	20 91 a0 04 	lds	r18, 0x04A0
      558:	30 91 a1 04 	lds	r19, 0x04A1
      55c:	21 15       	cp	r18, r1
-     55e:	81 ea       	ldi	r24, 0xA1	; 161
+     55e:	8d e8       	ldi	r24, 0x8D	; 141
      560:	38 07       	cpc	r19, r24
      562:	d0 f0       	brcs	.+52     	; 0x598 <auto_mode_drive+0x144>
 		r = (copro_distance[FRONT_RIGHT]/256) / 24;
