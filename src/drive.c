@@ -12,8 +12,11 @@ uint8_t distance = 0;
 uint8_t r = 0;
 uint8_t l = 0;
 
+/*
+ * @brief sets the nibo in backwards mode temporarily
+ */
 void backwards_mode(){
-	sendCmd(backwards+'0');
+	sendCmd(backwards+'0'); //send a signal to the pc
 	while(side_sensors_too_close()){
 		all_blocked();
 		copro_update();
@@ -36,7 +39,9 @@ void backwards_mode(){
 	delay(2000);
 }
 
-
+/*
+ * @brief Drives the nibo automatically avoiding obstacles using its IR-Distance Sensors
+ */
 void auto_mode_drive(){
 	copro_update();
 	for(int i=0;i<5;i++){
@@ -66,12 +71,16 @@ void auto_mode_drive(){
 		delay(1500);
 	}
 	else if(copro_distance[FRONT_LEFT]/256 > T_SIDES){
+		//if the nibo approaches a wall to the side, avoid it calculating the corresponding speed
+		//for each wheel of the nibo
 		r = (copro_distance[FRONT_LEFT]/256) / 24;
 		l = (copro_distance[FRONT_LEFT]/256) / 10;
 		copro_setSpeed(l,r-1);
 		going_half_right();
 	}
 	else if(copro_distance[FRONT_RIGHT]/256 > T_SIDES){
+		//if the nibo approaches a wall to the side, avoid it calculating the corresponding speed
+		//for each wheel of the nibo
 		r = (copro_distance[FRONT_RIGHT]/256) / 10;
 		l = (copro_distance[FRONT_RIGHT]/256) / 24;
 		copro_setSpeed(l-1,r);
@@ -79,6 +88,10 @@ void auto_mode_drive(){
 	}
 }
 
+/*
+ * @brief Evaluates if side sensors are too close
+ * @return true if they are too close, false otherwise
+ */
 uint8_t side_sensors_too_close(){
 	if(copro_distance[LEFT_SIDE]/256 > T_SIDES_90 && copro_distance[RIGHT_SIDE]/256 > T_SIDES_90){
 		return 1;
@@ -87,6 +100,10 @@ uint8_t side_sensors_too_close(){
 	}
 }
 
+/*
+ * @brief Evaluates if the left sensor is too close
+ * @return true if it is too close, false otherwise
+ */
 uint8_t is_left_side_too_close(){
 	if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
 		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
@@ -96,6 +113,10 @@ uint8_t is_left_side_too_close(){
 	}
 }
 
+/*
+ * @brief Evaluates if the right sensor is too close
+ * @return true if it is too close, false otherwise
+ */
 uint8_t is_right_side_too_close(){
 	if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
 		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
@@ -143,6 +164,11 @@ void drive_turn_around(){
 	copro_setTargetRel(-53, 53, 10);
 }
 
+/*
+ * @brief Drives the Nibo forward with a given speed
+ * @param speed the speed the nibo drives at
+ * @return true if the nibo drives without encountering an obstacle, false otherwise
+ */
 uint8_t drive_forward(uint8_t speed){
 	copro_setSpeed(speed,speed);
 	copro_update();
@@ -154,6 +180,9 @@ uint8_t drive_forward(uint8_t speed){
 	}
 }
 
+/*
+ * @brief Stops the nibo instantly and completely
+ */
 void stop_completely(){
 	copro_stop();
 }

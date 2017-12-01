@@ -5,9 +5,6 @@
  * @brief		Library for the display
  */
 
-/**
- * includes
- */
 #include "display.h"
 
 

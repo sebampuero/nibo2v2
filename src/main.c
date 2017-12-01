@@ -9,7 +9,9 @@ uint8_t last_cmd;
 uint8_t auto_flag = 1;
 enum modes nibo_mode;
 
-
+/*
+ * @brief Initialize all needed components of the nibo
+ */
 void init(){
 	sei();
 	bot_init();
@@ -36,8 +38,8 @@ int main(){
 		}//manual mode
 		while(nibo_mode == manual){
 			stop_completely();
-			sendCmd(manual+'0');
-			while((last_cmd=getCmd())==255);
+			sendCmd(manual+'0'); //let the pc know the nibo is requesting commands
+			while((last_cmd=getCmd())==255); //wait until a signal from pc comes
 			if(last_cmd==autonom){
 				nibo_mode = autonom;
 				auto_flag = 1;
@@ -77,6 +79,9 @@ int main(){
 	return 0;
 }
 
+/*
+ * @brief activates auto mode driving for the nibo
+ */
 void drive_auto(){
 	if(s3_was_pressed()){
 		if(auto_flag == 1){

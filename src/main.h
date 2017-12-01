@@ -9,7 +9,12 @@
 #include "display.h"
 #include "n2switchS3.h"
 
-
+/*
+ * @brief Initialize all needed components of the nibo
+ */
 void init();
 
+/*
+ * @brief activates auto mode driving for the nibo
+ */
 void drive_auto();
