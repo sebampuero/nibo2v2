@@ -5,8 +5,7 @@
  * @brief		Main Programm
  */
 #include "main.h"
-uint8_t last_cmd = 15;
-uint8_t drive_result;
+uint8_t last_cmd;
 uint8_t auto_flag = 1;
 enum modes nibo_mode;
 
@@ -21,7 +20,6 @@ void init(){
 	gfx_init();
 	copro_ir_startMeasure();
 }
-char text[20] = "";
 
 int main(){
 	nibo_mode = autonom;

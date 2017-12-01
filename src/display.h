@@ -46,4 +46,4 @@ void appendLine(char *txt);
  */
 void printVoltage();
 
-void clear();
+

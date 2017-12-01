@@ -22,14 +22,12 @@ void backwards_mode(){
 	delay(1500);
 	all_leds_off();
 	copro_stop();
-	if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
-		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
+	if(is_left_side_too_close()){
 		//turn right
 		sendCmd(right+'0');
 		drive_turn_right();
 		going_right();
-	}else if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
-		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
+	}else if(is_right_side_too_close()){
 		//turn left
 		sendCmd(left+'0');
 		drive_turn_left();
@@ -54,14 +52,12 @@ void auto_mode_drive(){
 		if(side_sensors_too_close()){
 			backwards_mode();
 		}
-		else if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
-		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
+		else if(is_left_side_too_close()){
 			//turn right
 			sendCmd(half_right+'0');
 			drive_turn_halfRight();
 			going_right();
-		}else if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
-		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
+		}else if(is_right_side_too_close()){
 			//turn left
 			sendCmd(half_left+'0');
 			drive_turn_halfLeft();
@@ -85,6 +81,24 @@ void auto_mode_drive(){
 
 uint8_t side_sensors_too_close(){
 	if(copro_distance[LEFT_SIDE]/256 > T_SIDES_90 && copro_distance[RIGHT_SIDE]/256 > T_SIDES_90){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+uint8_t is_left_side_too_close(){
+	if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
+		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+uint8_t is_right_side_too_close(){
+	if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
+		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
 		return 1;
 	}else{
 		return 0;
@@ -132,7 +146,8 @@ void drive_turn_around(){
 uint8_t drive_forward(uint8_t speed){
 	copro_setSpeed(speed,speed);
 	copro_update();
-	if(copro_distance[FRONT]/256 > T_FRONT){
+	if(copro_distance[FRONT]/256 > T_FRONT || copro_distance[FRONT_LEFT]/256 > T_SIDES
+			|| copro_distance[FRONT_RIGHT]/256 > T_SIDES){
 		return 0;
 	}else{
 		return 1;

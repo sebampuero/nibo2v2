@@ -99,10 +99,4 @@ void printDisplay(){
 		delay(10);
 	}
 }
-/**
- * @brief clears the whole display
- */
-void clear(){
-	gfx_fill(0);
-	gfx_move(0,0);
-}
+

@@ -65,6 +65,10 @@ void backwards_mode();
 
 uint8_t side_sensors_too_close();
 
+uint8_t is_right_side_too_close();
+
+uint8_t is_left_side_too_close();
+
 void auto_mode_drive();
 
 uint8_t drive_forward(uint8_t speed);
