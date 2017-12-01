@@ -5,18 +5,20 @@
  * @brief		File Library for wireless communication
  */
 #include "xbee.h"
+#include "display.h"
+
 
 void initUART0(){
 	uart0_set_baudrate(default_baudrate);
 	uart0_enable();
 }
 
-void sendCmd(uint8_t c){
+void sendCmd(char c){
 	while(uart0_txfull());
 	uart0_putchar(c);
 }
 
 uint8_t getCmd(){
 	if(!uart0_rxempty()) return uart0_getchar();
-	return 0;
+	return 255;
 }

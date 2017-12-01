@@ -19,19 +19,11 @@
 
 #define default_baudrate 9600
 
-#define nibo_manual 1
-#define nibo_auto 2
-#define nibo_forward 3
-#define nibo_turn_around 4
-#define nibo_half_right 5
-#define nibo_half_left 6
-#define nibo_right 7
-#define nibo_left 8
-#define nibo_print_voltage 9
+enum modes {manual, autonom, forward, backwards, half_right, half_left, right, left, voltage };
 
 void initUART0();
 
-void sendCmd(uint8_t c);
+void sendCmd(char c);
 
 uint8_t getCmd();
 

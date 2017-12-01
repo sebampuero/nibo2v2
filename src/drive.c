@@ -6,13 +6,14 @@
  @brief library for the movement of the nibo2 robot
  */
 #include "drive.h"
-
+#include "xbee.h"
 
 uint8_t distance = 0;
 uint8_t r = 0;
 uint8_t l = 0;
 
 void backwards_mode(){
+	sendCmd(backwards+'0');
 	while(side_sensors_too_close()){
 		all_blocked();
 		copro_update();
@@ -24,11 +25,13 @@ void backwards_mode(){
 	if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
 		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
 		//turn right
+		sendCmd(right+'0');
 		drive_turn_right();
 		going_right();
 	}else if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
 		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
 		//turn left
+		sendCmd(left+'0');
 		drive_turn_left();
 		going_left();
 	}
@@ -54,11 +57,13 @@ void auto_mode_drive(){
 		else if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
 		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
 			//turn right
+			sendCmd(half_right+'0');
 			drive_turn_halfRight();
 			going_right();
 		}else if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
 		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
 			//turn left
+			sendCmd(half_left+'0');
 			drive_turn_halfLeft();
 			going_left();
 		}
@@ -126,6 +131,7 @@ void drive_turn_around(){
 
 uint8_t drive_forward(uint8_t speed){
 	copro_setSpeed(speed,speed);
+	copro_update();
 	if(copro_distance[FRONT]/256 > T_FRONT){
 		return 0;
 	}else{

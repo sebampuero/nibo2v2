@@ -7,7 +7,9 @@ src/drive.d: ../src/drive.c ../src/drive.h \
  /home/defaultuser/nibolib/include/nibo/spi.h \
  /home/defaultuser/nibolib/include/nibo/delay.h ../src/nibo_leds.h \
  /home/defaultuser/nibolib/include/nibo/leds.h \
- /home/defaultuser/nibolib/include/nibo/pwm.h
+ /home/defaultuser/nibolib/include/nibo/pwm.h ../src/xbee.h \
+ /home/defaultuser/nibolib/include/nibo/display.h \
+ /home/defaultuser/nibolib/include/nibo/gfx.h ../src/uart0.h
 
 ../src/drive.h:
 
@@ -30,3 +32,11 @@ src/drive.d: ../src/drive.c ../src/drive.h \
 /home/defaultuser/nibolib/include/nibo/leds.h:
 
 /home/defaultuser/nibolib/include/nibo/pwm.h:
+
+../src/xbee.h:
+
+/home/defaultuser/nibolib/include/nibo/display.h:
+
+/home/defaultuser/nibolib/include/nibo/gfx.h:
+
+../src/uart0.h:

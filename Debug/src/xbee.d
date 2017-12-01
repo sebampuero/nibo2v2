@@ -7,7 +7,7 @@ src/xbee.d: ../src/xbee.c ../src/xbee.h \
  /home/defaultuser/nibolib/include/nibo/gfx.h \
  /home/defaultuser/nibolib/include/nibo/copro.h ../src/uart0.h \
  /home/defaultuser/nibolib/include/nibo/delay.h \
- /home/defaultuser/nibolib/include/nibo/spi.h
+ /home/defaultuser/nibolib/include/nibo/spi.h ../src/display.h
 
 ../src/xbee.h:
 
@@ -30,3 +30,5 @@ src/xbee.d: ../src/xbee.c ../src/xbee.h \
 /home/defaultuser/nibolib/include/nibo/delay.h:
 
 /home/defaultuser/nibolib/include/nibo/spi.h:
+
+../src/display.h:
