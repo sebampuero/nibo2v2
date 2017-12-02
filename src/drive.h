@@ -5,6 +5,8 @@
  @brief header file for the movement of the nibo2 robot
  */
 
+#ifndef DRIVE_H
+#define DRIVE_H
 
 #include <nibo/niboconfig.h>
 #include <nibo/iodefs.h>
@@ -103,4 +105,4 @@ uint8_t drive_forward(uint8_t speed);
  */
 void stop_completely();
 
-
+#endif /* DRIVE_H */

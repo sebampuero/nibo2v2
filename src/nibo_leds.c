@@ -4,6 +4,8 @@
  * @date		10.11.2017
  * @brief		Library for leds display according to function of nibo
  */
+
+
 #include "nibo_leds.h"
 
 /*
@@ -60,3 +62,5 @@ void all_leds_off(){
 		leds_set_status(LEDS_OFF,i);
 	}
 }
+
+

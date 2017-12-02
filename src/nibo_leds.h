@@ -4,6 +4,9 @@
  * @date		10.11.2017
  * @brief		Header File Library for leds display according to function of nibo
  */
+#ifndef LEDS_H
+#define LEDS_H
+
 #include <nibo/leds.h>
 #include <nibo/pwm.h>
 #include <nibo/niboconfig.h>
@@ -38,3 +41,4 @@ void going_half_left();
  */
 void going_half_right();
 
+#endif // LEDS_H

@@ -5,6 +5,9 @@
  * @brief		Header File Library for the display
  */
 
+#ifndef DISPLAY_H
+#define DISPLAY_H
+
 /**
  * defines
  */
@@ -36,4 +39,4 @@ void appendLine(char *txt);
  */
 void printVoltage();
 
-
+#endif // DISPLAY_H

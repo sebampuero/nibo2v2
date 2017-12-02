@@ -4,6 +4,10 @@
  * @date		10.11.2017
  * @brief		Header file Library for wireless communication
  */
+
+#ifndef XBEE_H
+#define XBEE_H
+
 #include <stdio.h>
 #include <stdint.h>
 #include "uart0.h"
@@ -31,3 +35,4 @@ void sendCmd(char c);
  */
 uint8_t getCmd();
 
+#endif // XBEE_H
