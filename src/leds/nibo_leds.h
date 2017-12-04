@@ -1,6 +1,6 @@
 /**
  * @file		nibo_leds.h
- * @author		Sebastian Ampuero
+ * @author		Sebastian Ampuero, Tichaona Kadzinga
  * @date		10.11.2017
  * @brief		Header File Library for leds display according to function of nibo
  */

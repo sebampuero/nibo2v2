@@ -4,9 +4,9 @@
  * @date		10.11.2017
  * @brief		Header File for the main programm
  */
-#include "xbee.h"
-#include "drive.h"
-#include "display.h"
+#include "xbee/xbee.h"
+#include "drive/drive.h"
+#include "drive/display.h"
 #include "n2switchS3.h"
 
 /*

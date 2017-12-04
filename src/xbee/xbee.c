@@ -5,7 +5,7 @@
  * @brief		File Library for wireless communication
  */
 #include "xbee.h"
-#include "display.h"
+
 
 /*
  * @brief Initialize UART0 Module

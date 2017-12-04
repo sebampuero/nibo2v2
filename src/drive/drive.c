@@ -5,12 +5,13 @@
  @date 12.11.2017
  @brief library for the movement of the nibo2 robot
  */
-#include "drive.h"
-#include "xbee.h"
+
 
 uint8_t distance = 0;
 uint8_t r = 0;
 uint8_t l = 0;
+#include "drive.h"
+
 
 /*
  * @brief sets the nibo in backwards mode temporarily

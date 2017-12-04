@@ -1,6 +1,6 @@
 /**
  * @file		display.h
- * @author		Sebastian Ampuero
+ * @author		Sebastian Ampuero, Tichaona Kadzinga
  * @date		20.11.2017
  * @brief		Header File Library for the display
  */

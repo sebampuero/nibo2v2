@@ -15,7 +15,8 @@
 #include <nibo/spi.h>
 #include <nibo/delay.h>
 #include <stdint.h>
-#include "nibo_leds.h"
+#include "../leds/nibo_leds.h"
+#include "../xbee/xbee.h"
 
 // Define copro_sensor identifiers
 #define FRONT_LEFT       3

@@ -1,6 +1,6 @@
 /**
  * @file		display.c
- * @author		Sebastian Ampuero
+ * @author		Sebastian Ampuero, Tichaona Kadzinga
  * @date		20.11.2017
  * @brief		Library for the display
  */
