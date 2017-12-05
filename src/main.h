@@ -6,7 +6,7 @@
  */
 #include "xbee/xbee.h"
 #include "drive/drive.h"
-#include "drive/display.h"
+#include "display/display.h"
 #include "n2switchS3.h"
 
 /*

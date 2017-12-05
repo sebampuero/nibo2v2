@@ -29,7 +29,9 @@ int main(){
 	initUART0();
 	displayInit();
 	printVoltage();
+	appendLine("Initisialitierung NXB2...");
 	delay(10000);
+	appendLine("NIBO Ready");
 	while (1)
 	{
 		while(nibo_mode == autonom){

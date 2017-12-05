@@ -31,11 +31,11 @@
 
 //Threshold values for copro sensors
 // Threshold for the front sensor
-#define T_FRONT    150
+#define T_FRONT    120 // ritchie 120 jul e
 //Threshold for front-side sensors
-#define T_SIDES    140
+#define T_SIDES    140 // ritchie 140 jul e
 //Threshold for side sensors
-#define T_SIDES_90 80
+#define T_SIDES_90 100 // ritchie 100 jul e
 
 
 

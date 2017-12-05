@@ -6,11 +6,11 @@
  @brief library for the movement of the nibo2 robot
  */
 
-
+#include "drive.h"
 uint8_t distance = 0;
 uint8_t r = 0;
 uint8_t l = 0;
-#include "drive.h"
+
 
 
 /*
@@ -74,17 +74,17 @@ void auto_mode_drive(){
 	else if(copro_distance[FRONT_LEFT]/256 > T_SIDES){
 		//if the nibo approaches a wall to the side, avoid it calculating the corresponding speed
 		//for each wheel of the nibo
-		r = (copro_distance[FRONT_LEFT]/256) / 24;
-		l = (copro_distance[FRONT_LEFT]/256) / 10;
-		copro_setSpeed(l,r-1);
+		r = (copro_distance[FRONT_LEFT]/256) / 22; //ritchie 22  / 12
+		l = (copro_distance[FRONT_LEFT]/256) / 12; // jul e
+		copro_setSpeed(l,r);
 		going_half_right();
 	}
 	else if(copro_distance[FRONT_RIGHT]/256 > T_SIDES){
 		//if the nibo approaches a wall to the side, avoid it calculating the corresponding speed
 		//for each wheel of the nibo
-		r = (copro_distance[FRONT_RIGHT]/256) / 10;
-		l = (copro_distance[FRONT_RIGHT]/256) / 24;
-		copro_setSpeed(l-1,r);
+		r = (copro_distance[FRONT_RIGHT]/256) / 12; //ritchie 22 / 12
+		l = (copro_distance[FRONT_RIGHT]/256) / 22; //jul e
+		copro_setSpeed(l,r);
 		going_half_left();
 	}
 }
@@ -94,6 +94,7 @@ void auto_mode_drive(){
  * @return true if they are too close, false otherwise
  */
 uint8_t side_sensors_too_close(){
+	copro_update();
 	if(copro_distance[LEFT_SIDE]/256 > T_SIDES_90 && copro_distance[RIGHT_SIDE]/256 > T_SIDES_90){
 		return 1;
 	}else{
@@ -106,8 +107,8 @@ uint8_t side_sensors_too_close(){
  * @return true if it is too close, false otherwise
  */
 uint8_t is_left_side_too_close(){
-	if((copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256) >
-		(copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256)){
+	copro_update();
+	if(copro_distance[LEFT_SIDE]/256 > copro_distance[RIGHT_SIDE]/256){
 		return 1;
 	}else{
 		return 0;
@@ -119,8 +120,8 @@ uint8_t is_left_side_too_close(){
  * @return true if it is too close, false otherwise
  */
 uint8_t is_right_side_too_close(){
-	if((copro_distance[FRONT_RIGHT]/256) + (copro_distance[RIGHT_SIDE]/256) >
-		(copro_distance[FRONT_LEFT]/256) + (copro_distance[LEFT_SIDE]/256)){
+	copro_update();
+	if(copro_distance[RIGHT_SIDE]/256 > copro_distance[LEFT_SIDE]/256){
 		return 1;
 	}else{
 		return 0;
@@ -173,8 +174,8 @@ void drive_turn_around(){
 uint8_t drive_forward(uint8_t speed){
 	copro_setSpeed(speed,speed);
 	copro_update();
-	if(copro_distance[FRONT]/256 > T_FRONT || copro_distance[FRONT_LEFT]/256 > T_SIDES
-			|| copro_distance[FRONT_RIGHT]/256 > T_SIDES){
+	if(copro_distance[FRONT]/256 > 200 || copro_distance[FRONT_LEFT]/256 > 200
+			|| copro_distance[FRONT_RIGHT]/256 > 200){
 		return 0;
 	}else{
 		return 1;

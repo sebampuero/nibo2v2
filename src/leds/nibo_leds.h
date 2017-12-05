@@ -7,9 +7,9 @@
 #ifndef LEDS_H
 #define LEDS_H
 
+#include <nibo/niboconfig.h>
 #include <nibo/leds.h>
 #include <nibo/pwm.h>
-#include <nibo/niboconfig.h>
 
 /*
  * @brief Turn on the headlights, it can be dangerous at night

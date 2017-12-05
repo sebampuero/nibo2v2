@@ -10,9 +10,9 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include "uart0.h"
 #include <avr/interrupt.h>
 #include <nibo/niboconfig.h>
+#include "uart0.h"
 
 #define default_baudrate 9600
 //Enumeration of nibo modes
